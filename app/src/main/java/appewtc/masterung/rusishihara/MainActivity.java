@@ -1,5 +1,6 @@
 package appewtc.masterung.rusishihara;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -20,6 +22,7 @@ public class MainActivity extends ActionBarActivity {
     private RadioGroup ragChoice;
     private RadioButton radChoice1, radChoice2, radChoice3, radChoice4;
     private Button btnAnswer;
+    private int intRadio, intIndex;
 
 
     @Override
@@ -40,7 +43,31 @@ public class MainActivity extends ActionBarActivity {
 
     private void controllerRadio() {
 
-        
+        ragChoice.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+
+                //Setup intRadio
+                switch (i) {
+                    case R.id.radioButton:
+                        intRadio = 1;
+                        break;
+                    case R.id.radioButton2:
+                        intRadio = 2;
+                        break;
+                    case R.id.radioButton3:
+                        intRadio = 3;
+                        break;
+                    case R.id.radioButton4:
+                        intRadio = 4;
+                        break;
+                    default:
+                        intRadio = 0;
+                        break;
+                }
+
+            }   //event
+        });
 
     }   //controllerRadio
 
@@ -50,12 +77,46 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View view) {
 
-
+                checkZero();
 
             }   //event
         });
 
     }   //controllerButton
+
+    private void checkZero() {
+
+        if (intRadio == 0) {
+
+            Toast.makeText(getApplicationContext(), "Please Choose Answer เว้ยเห้ย", Toast.LENGTH_SHORT).show();
+
+        } else {
+
+            checkTimes();
+
+        }
+
+    }   // checkZero
+
+    private void checkTimes() {
+
+        if (intIndex == 9) {
+
+            //Intent to ShowScore
+            Intent objIntent = new Intent(MainActivity.this, ShowScoreActivity.class);
+            startActivity(objIntent);
+            finish();
+
+        } else {
+
+            intIndex += 1;
+
+            //Controller Call View
+            txtQuestion.setText(Integer.toString(intIndex+1) + ". What is this ?" );
+
+        }
+
+    }   //checkTimes
 
     private void bindWidget() {
 
