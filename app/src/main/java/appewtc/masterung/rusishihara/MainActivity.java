@@ -23,6 +23,7 @@ public class MainActivity extends ActionBarActivity {
     private RadioButton radChoice1, radChoice2, radChoice3, radChoice4;
     private Button btnAnswer;
     private int intRadio, intIndex;
+    private MyModel objMyModel;
 
 
     @Override
@@ -39,7 +40,24 @@ public class MainActivity extends ActionBarActivity {
         //Controller RadioGroup
         controllerRadio();
 
+        controllerModel();
+
     }   // onCreate
+
+    private void controllerModel() {
+
+        objMyModel = new MyModel();
+
+        objMyModel.setOnMyModelChangeListener(new MyModel.OnMyModelChangeListener() {
+            @Override
+            public void onMyModelChangeListener(MyModel myModel) {
+
+
+
+            }//event
+        });
+
+    }
 
     private void controllerRadio() {
 
@@ -108,6 +126,9 @@ public class MainActivity extends ActionBarActivity {
             finish();
 
         } else {
+
+            //Controller Call Model
+            objMyModel.setIntButton(intIndex);
 
             intIndex += 1;
 
