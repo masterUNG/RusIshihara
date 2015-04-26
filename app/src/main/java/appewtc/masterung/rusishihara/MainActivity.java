@@ -24,6 +24,7 @@ public class MainActivity extends ActionBarActivity {
     private Button btnAnswer;
     private int intRadio, intIndex, intScore;
     private MyModel objMyModel;
+    private ScoreTABLE objScoreTABLE;
 
 
     @Override
@@ -33,6 +34,8 @@ public class MainActivity extends ActionBarActivity {
 
         // Bind Widget
         bindWidget();
+
+        objScoreTABLE = new ScoreTABLE(this);
 
         // Controller button
         controllerButton();
