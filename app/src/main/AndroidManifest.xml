@@ -21,6 +21,10 @@
             android:name=".ShowScoreActivity"
             android:label="@string/title_activity_show_score" >
         </activity>
+        <activity
+            android:name=".ListTimeActivity"
+            android:label="@string/title_activity_list_time" >
+        </activity>
     </application>
 
 </manifest>

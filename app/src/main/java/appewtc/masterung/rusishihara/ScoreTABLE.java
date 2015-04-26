@@ -2,6 +2,7 @@ package appewtc.masterung.rusishihara;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 /**
@@ -25,6 +26,19 @@ public class ScoreTABLE {
         readSQLite = objMyOpenHelper.getReadableDatabase();
 
     }// Constructor
+
+    //Read AllData
+    public Cursor readAllData() {
+
+        Cursor objCursor = readSQLite.query(SCORE_TABLE, new String[]{COLUMN_ID, COLUMN_TIME, COLUMN_SCORE}, null, null, null, null, null);
+
+        if (objCursor != null) {
+            objCursor.moveToFirst();
+        }
+
+        return objCursor;
+    }
+
 
     //Update Record
     public long addNewValueToSQLite(String strTime, String strScore) {

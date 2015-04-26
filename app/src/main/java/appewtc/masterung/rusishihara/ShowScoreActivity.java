@@ -53,6 +53,9 @@ public class ShowScoreActivity extends ActionBarActivity {
         objScoreTABLE.addNewValueToSQLite(strCurrentTime, Integer.toString(intMyScore));
         Toast.makeText(getApplicationContext(), "Save Finish", Toast.LENGTH_SHORT).show();
 
+        Intent objIntent = new Intent(ShowScoreActivity.this, ListTimeActivity.class);
+        startActivity(objIntent);
+        finish();
     }
 
     @Override
