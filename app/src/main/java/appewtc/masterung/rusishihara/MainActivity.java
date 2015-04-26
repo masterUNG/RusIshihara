@@ -52,12 +52,39 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onMyModelChangeListener(MyModel myModel) {
 
-
+                changeViewbyModel(myModel.getIntButton());
 
             }//event
         });
 
     }
+
+    private void changeViewbyModel(int intButton) {
+
+        // Change Image
+        int intDrawabel[] = new int[]{R.drawable.ishihara_01, R.drawable.ishihara_02,
+                R.drawable.ishihara_03, R.drawable.ishihara_04, R.drawable.ishihara_05,
+                R.drawable.ishihara_06, R.drawable.ishihara_07, R.drawable.ishihara_08,
+                R.drawable.ishihara_09, R.drawable.ishihara_10};
+
+        imvIshihara.setImageResource(intDrawabel[intButton + 1]);
+
+
+        // Change Choice
+        String strChoice[] = new String[4];
+        int intChoice[] = new int[]{R.array.times1, R.array.times2,
+                R.array.times3, R.array.times4, R.array.times5,
+                R.array.times6, R.array.times7, R.array.times8,
+                R.array.times9, R.array.times10};
+
+        strChoice = getResources().getStringArray(intChoice[intButton + 1]);
+
+        radChoice1.setText(strChoice[0]);
+        radChoice2.setText(strChoice[1]);
+        radChoice3.setText(strChoice[2]);
+        radChoice4.setText(strChoice[3]);
+
+    }   //changeViewbyModel
 
     private void controllerRadio() {
 
