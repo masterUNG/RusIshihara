@@ -7,12 +7,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class ShowScoreActivity extends ActionBarActivity {
 
     //Explicit
     private TextView txtShowScore;
+    private int intMyScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +29,7 @@ public class ShowScoreActivity extends ActionBarActivity {
         txtShowScore = (TextView) findViewById(R.id.txtShowScore);
 
         //Receive From Main Activity
-        int intMyScore = getIntent().getExtras().getInt("Score");
+        intMyScore = getIntent().getExtras().getInt("Score");
         txtShowScore.setText(Integer.toString(intMyScore) + "/10" );
 
     }   //onCreate
@@ -36,6 +42,16 @@ public class ShowScoreActivity extends ActionBarActivity {
     }
 
     public void clickSave(View view) {
+
+        //Get Time
+        DateFormat objDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date objDate = new Date();
+        String strCurrentTime = objDateFormat.format(objDate);
+
+        //Updata Data
+        ScoreTABLE objScoreTABLE = new ScoreTABLE(this);
+        objScoreTABLE.addNewValueToSQLite(strCurrentTime, Integer.toString(intMyScore));
+        Toast.makeText(getApplicationContext(), "Save Finish", Toast.LENGTH_SHORT).show();
 
     }
 
