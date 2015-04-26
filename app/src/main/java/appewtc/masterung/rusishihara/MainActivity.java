@@ -22,7 +22,7 @@ public class MainActivity extends ActionBarActivity {
     private RadioGroup ragChoice;
     private RadioButton radChoice1, radChoice2, radChoice3, radChoice4;
     private Button btnAnswer;
-    private int intRadio, intIndex;
+    private int intRadio, intIndex, intScore;
     private MyModel objMyModel;
 
 
@@ -137,11 +137,27 @@ public class MainActivity extends ActionBarActivity {
 
         } else {
 
+            checkScore();
+
             checkTimes();
+
+            ragChoice.clearCheck();
 
         }
 
     }   // checkZero
+
+    private void checkScore() {
+
+        int intAnswerTrue[] = new int[]{1, 2, 3, 1, 2, 3, 1, 2, 4, 4};
+        int intUserChoose[] = new int[10];
+        intUserChoose[intIndex] = intRadio;
+
+        if (intUserChoose[intIndex] == intAnswerTrue[intIndex]) {
+            intScore++;
+        }
+
+    }
 
     private void checkTimes() {
 
@@ -149,6 +165,9 @@ public class MainActivity extends ActionBarActivity {
 
             //Intent to ShowScore
             Intent objIntent = new Intent(MainActivity.this, ShowScoreActivity.class);
+
+            objIntent.putExtra("Score", intScore);
+
             startActivity(objIntent);
             finish();
 
